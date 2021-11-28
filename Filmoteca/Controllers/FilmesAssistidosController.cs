@@ -23,7 +23,7 @@ namespace Filmoteca.Controllers
         public async Task<IActionResult> ListarFilmesAssistidos(int IdEspectador)
         {
             return Ok(
-                await _filmotecaDbContext.FilmesAssistidos
+                await _filmotecaDbContext.FilmesAssistidos.Where(x=>x.IdEspectador == IdEspectador)
                 .Include(x=>x.Espectador)
                 .Include(x=>x.Filme)
                 .Include(x=>x.Filme.Diretor)

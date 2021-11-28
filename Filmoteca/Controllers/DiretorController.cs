@@ -35,7 +35,7 @@ namespace Filmoteca.Controllers
             var diretorTemp = await _filmotecaDbContext.Diretores.Where(x => x.Nome == dadosEntrada.Nome).FirstOrDefaultAsync();
 
             if (diretorTemp != null)
-                return BadRequest("Diretor já cadastrado.");
+                return Conflict("Diretor já cadastrado.");
 
             var diretor = new Diretor()
             {

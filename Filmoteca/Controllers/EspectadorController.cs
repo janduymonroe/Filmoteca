@@ -46,8 +46,8 @@ namespace Filmoteca.Controllers
         [Route("inserir-espectador")]
         public async Task<IActionResult> InserirEspectador(EspectadorInput dadosEntrada)
         {
-            var espectadorNome = _filmotecaDbContext.Espectadores.Where(x => x.Nome == dadosEntrada.Nome);
-            var espectadorEmail = _filmotecaDbContext.Espectadores.Where(x => x.Email == dadosEntrada.Email);
+            var espectadorNome = await _filmotecaDbContext.Espectadores.Where(x => x.Nome == dadosEntrada.Nome).FirstOrDefaultAsync();
+            var espectadorEmail = await _filmotecaDbContext.Espectadores.Where(x => x.Email == dadosEntrada.Email).FirstOrDefaultAsync();
 
             if (espectadorNome != null && espectadorEmail != null)
                 return Conflict("Espectador já cadastrado.");
